@@ -79,12 +79,13 @@ void enableNoclip() {
 
 void disableNoclip() {
 	writeIntToMemory(getBaseAddress() + NOCLIP_ADDR_OFF, NOCLIP_OFF);
+	playOff();
 }
 
 void loop() {
 
 	while (1) {
-		if (GetAsyncKeyState(VK_F1)) {
+		if (GetAsyncKeyState(VK_F1) & 0x8000) {
 			if (!ammoOn) {
 				ammoOn = true;
 				enableInfAmmo();
@@ -93,7 +94,7 @@ void loop() {
 				disableInfAmmo();
 			}
 		}
-		else if (GetAsyncKeyState(VK_F2)) {
+		else if (GetAsyncKeyState(VK_F2) & 0x8000) {
 			if (!godOn) {
 				godOn = true;
 				enableGodMode();
@@ -101,7 +102,7 @@ void loop() {
 				godOn = false;
 				disableGodMode();
 			}
-		} else if (GetAsyncKeyState(VK_F3)) {
+		} else if (GetAsyncKeyState(VK_F3) & 0x8000) {
 			if (!lottoPointsOn) {
 				lottoPointsOn = true;
 				giveLottoPoints();
@@ -109,7 +110,7 @@ void loop() {
 				lottoPointsOn = false;
 				removeLottoPoints();
 			}
-		} else if (GetAsyncKeyState(VK_F4)) {
+		} else if (GetAsyncKeyState(VK_F4) & 0x8000) {
 			if (!noclipOn) {
 				noclipOn = true;
 				enableNoclip();
